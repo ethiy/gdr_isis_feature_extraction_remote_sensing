@@ -1,5 +1,63 @@
-\documentclass{article}
-\usepackage[utf8]{inputenc}
-\begin{document}
-(Type your content here.)
-\end{document}
+\documentclass[a4paper,french]{article}
+    \usepackage{rfiap2018_resume}
+    
+    \usepackage[utf8]{inputenc}
+    \usepackage[T1]{fontenc}
+    \usepackage{babel}
+    \usepackage{times, fourier}
+    
+    \usepackage{array}
+    \newcolumntype{x}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+    \usepackage{tabulary}
+    \usepackage{booktabs}
+    \usepackage{multirow}
+    
+    
+    \usepackage{siunitx}
+    
+    \usepackage{standalone}
+    
+    \usepackage{enumitem}
+    
+    \usepackage{amsmath}
+    
+    \usepackage{float, wrapfig}
+    \usepackage[tablename=Tab.]{caption}
+    \usepackage{color}
+    
+    \usepackage{etoolbox, setspace}
+    \patchcmd{\thebibliography}
+      {\settowidth}
+      {\setlength{\itemsep}{0pt plus 0.1pt}\settowidth}
+      {}{}
+    \apptocmd{\thebibliography}
+      {\small}
+      {}{}
+    
+    
+    \begin{document}
+        \date{}
+        \title{
+            \Large\bf Qualification sémantique de modèles $3D$ de bâtiments
+        }
+        \author{
+            \begin{tabular}[t]{c@{\extracolsep{4em}}c@{\extracolsep{4em}}c@{\extracolsep{4em}}c}
+                Oussama Ennafii${}^1$ & Arnaud Le Bris${}^1$ & Florent Lafarge${}^2$ & Clément Mallet${}^1$ \\
+            \end{tabular}
+            {}\\
+            \\
+            ${}^1$        Univ. Paris-Est, LaSTIG MATIS, IGN, ENSG, 94160 Saint-Mandé, France\\
+            ${}^2$        Inria, Titane, 06902 Sophia Antipolis, France
+            {}\\
+            \\
+            oussama.ennafii@ign.fr\\
+        }
+        \maketitle
+        \thispagestyle{empty}
+    
+        \bibliographystyle{abbrv}
+        \begin{spacing}{0.01}
+            \bibliography{references}
+        \end{spacing}
+    \end{document}
+    
