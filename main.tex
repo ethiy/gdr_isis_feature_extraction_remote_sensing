@@ -55,6 +55,12 @@
         \maketitle
         \thispagestyle{empty}
     	The automatic generation of 3D urban models from geospatial data is now a standard procedure. However, practitioners still have to visually assess, at city-scale, the correctness of these models and detect inevitable reconstruction errors. Such a process relies on experts, and is highly time-consuming (2 h/km$^2$/expert). In this work, we propose an approach for automatically evaluating the quality of 3D building models. Potential errors are compiled in a hierarchical, versatile and parameterizable taxonomy. This allows for the first time to disentangle fidelity and modeling errors, whatever the level of details of the modeled buildings. The quality of models is predicted using the geometric properties of buildings and, when available, image and depth data. A baseline of handcrafted, yet generic features, is fed to a Random Forest classifier. Both multi-class and multi-label cases are considered. Due to the interdependence between classes of errors, we have the ability to retrieve all errors at the same time while predicting erroneous buildings. We tested our framework on an urban area with more than 1,000 building models. We can satisfactorily detect, on average $96\%$ of the most frequent errors.
+        \begin{figure}
+          \begin{center}
+              \includestandalone[mode=buildnew, width=\textwidth]{graphical_abstract}
+             \vspace{-1.3cm} \caption{\label{fig::pipeline} The semantic evaluation paradigm proposal: in addition to the input model topological structure depicted in (b), features are extracted from comparison to height maps, as represented by the difference computed between the model height and the DSM in (c). Images can also be used to characterize models by comparing their projected edges to local gradients (cf. (d)). Based on the computed features, semantic errors affecting the building are predicted using a pretrained classifier.}
+          \end{center}
+    	\end{figure}
         \bibliographystyle{abbrv}
         \begin{spacing}{0.01}
             \bibliography{references}
