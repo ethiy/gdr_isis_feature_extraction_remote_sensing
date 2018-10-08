@@ -1,78 +1,77 @@
 \documentclass[a4paper,french]{article}
-    \usepackage{rfiap2018_resume}
-    
-    \usepackage[utf8]{inputenc}
-    \usepackage[T1]{fontenc}
-    \usepackage{babel}
-    \usepackage{times, fourier}
-    
-    \usepackage{array}
-    \newcolumntype{x}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
-    \usepackage{tabulary}
-    \usepackage{booktabs}
-    \usepackage{multirow}
-    
-    
-    \usepackage{siunitx}
-    
-    \usepackage{standalone}
-    
-    \usepackage{enumitem}
-    
-    \usepackage{amsmath}
-    
-    \usepackage{float, wrapfig}
-    \usepackage[tablename=Tab.]{caption}
-    \usepackage{color}
-    
-    \usepackage{etoolbox, setspace}
-    \patchcmd{\thebibliography}
-      {\settowidth}
-      {\setlength{\itemsep}{0pt plus 0.1pt}\settowidth}
-      {}{}
-    \apptocmd{\thebibliography}
-      {\small}
-      {}{}
-    
-    
-    \begin{document}
-        \date{}
-        \title{
-            \Large\bf Qualification sémantique de modèles $3D$ de bâtiments
-        }
-        \author{
-            \begin{tabular}[t]{c@{\extracolsep{4em}}c@{\extracolsep{4em}}c@{\extracolsep{4em}}c}
-                Oussama Ennafii${}^1$ & Arnaud Le Bris${}^1$ & Florent Lafarge${}^2$ & Clément Mallet${}^1$ \\
-            \end{tabular}
-            {}\\
-            \\
-            ${}^1$        Univ. Paris-Est, LaSTIG MATIS, IGN, ENSG, 94160 Saint-Mandé, France\\
-            ${}^2$        Inria, Titane, 06902 Sophia Antipolis, France
-            {}\\
-            \\
-            oussama.ennafii@ign.fr\\
-        }
-        \maketitle
-        \thispagestyle{empty}
-                \begin{figure}[H]
-          \begin{center}
-              \includestandalone[mode=buildnew, width=\textwidth]{graphical_abstract}
-             \caption{\label{fig::pipeline} Paradigme d'évaluation sémantique proposé: en plus du modèle topologique illustré en (b), des attributs sont extraits à partir de cartes de hauteur, comme représenté par la différence calculée entre la hauteur du modèle et le Modèle Numérique de Surface en (c). Les images géospatiales à très haute résolution spatiale peuvent également être utilisées pour caractériser des modèles en comparant leurs projections à des gradients locaux (voir (d)). En se fondant sur ces attributs, les erreurs sont prédites à l'aide d'un classificateur préétabli.}
-          \end{center}
-    	\end{figure}
-        Bien que la reconstruction automatique de modèles $3D$ urbains à partir de données géospatiales (Lidar, imagerie optique multi-vues aéroportée ou satellite) soit communément abordée dans la littérature et opérationnelle dans de nombreux logiciels, les modèles produits sont très souvent affectés par des erreurs. Aucune méthode n'est capable d'appréhender la grande diversité au sein des villes et entre milieux urbains aujourd'hui. Aussi, dans un cadre de production, des opérateurs doivent évaluer visuellement, à l'échelle de la ville, la validité des modèles et détecter des erreurs de modélisation qui sont inévitables. Un tel processus repose sur une forte expertise. Elle prend beaucoup de temps (2 h/km$^2$/expert).\\
-        
-        Dans ce travail, nous proposons une approche d'évaluation automatique de la qualité des modèles $3D$ de bâtiments, indépendante de la méthode de reconstruction en entrée, à l'échelle du bâtiment. Cela permet à la fois d'effectuer des corrections a posteriori sur les modèles reconstruits, de la détection de changements et de la sélection des méthodes de reconstruction les plus adaptées selon les environnements urbains et les types de bâtiments.\\
-        
-        Notre approche se fonde sur un mécanisme standard de classification supervisée. Les erreurs potentielles sont tout d'abord compilées selon une taxonomie hiérarchique, polyvalente et paramétrable (trois niveaux de \textit{finesse} sémantique pour un total de dix erreurs pour la taxonomie pleinement développée au LoD-2). Celle-ci permet pour la première fois de démêler les erreurs de fidélité et de modélisation, quel que soit le niveau de détail (\textit{LoD}) des bâtiments modélisés. La qualité des modèles est prédite à partir des propriétés géométriques des bâtiments et, le cas échéant, d'images géospatiales à Très Haute Résolution Spatiale et de cartes de profondeur (Modèles Numériques de Surface - MNS, cf. Figure~\ref{fig::pipeline}). Concernant les attributs géométriques, des statistiques sont calculées, pour chaque bâtiment, sur des caractéristiques géométriques de facettes. Les attributs altimétriques résultent de l'analyse de l'histogramme des résidus altimétriques entre le MNS et le modèle. Dernièrement, les arêtes du modèle 3D sont comparées aux images THR en calculant des scores de corrélation entre le gradient local et la normale de l'arête. Ce jeu d'attributs génériques et manuellement construit (20 attributs par modalité) alimente un classifieur supervisé de type Forêt Aléatoire. Des cas \textit{Multi-classes} (pour chaque instance, on prédit une seule étiquette qui prend plusieurs valeurs) et \textit{Multi-labels} (pour chaque instance, on prédit plusieures étiquettes binaires) sont pris en compte selon le niveau de détail et le niveau de sémantisation souhaité. En raison de l'indépendance entre les classes d'erreurs, nous avons la possibilité de retrouver toutes ces classes simultanément. \\
-        
-En comparant les résultats du processus proposé sur plusieurs zones urbaines de typologie variée (Paris: urbain dense, Elancourt: résidentiel, Nantes: urbain épars), nous pouvons détecter de manière satisfaisante, en moyenne, $96\%$ des erreurs les plus fréquentes (sur plus de 3000 bâtiments étiquetés manuellement). Devant la complexité d'obtenir des données de vérité terrain et donc des échantillons d'apprentissage pour les classifieurs, une analyse supplémentaire est menée sur la capacité de transfert des modèles de classification entre zones urbaines.\\
+\usepackage{rfiap2018_resume}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage{times, fourier}
+
+\usepackage{array}
+\newcolumntype{x}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\usepackage{tabulary}
+\usepackage{booktabs}
+\usepackage{multirow}
 
 
+\usepackage{siunitx}
 
-        \bibliographystyle{abbrv}
-        \begin{spacing}{0.01}
-            \bibliography{references}
-        \end{spacing}
-    \end{document}
+\usepackage{standalone}
+
+\usepackage{enumitem}
+
+\usepackage{amsmath}
+
+\usepackage{float, wrapfig}
+\usepackage[tablename=Tab.]{caption}
+\usepackage{color}
+
+\usepackage{etoolbox, setspace}
+\patchcmd{\thebibliography}
+  {\settowidth}
+  {\setlength{\itemsep}{0pt plus 0.1pt}\settowidth}
+  {}{}
+\apptocmd{\thebibliography}
+  {\small}
+  {}{}
+
+
+\begin{document}
+    \date{}
+    \title{
+        \Large\bf Qualification sémantique de modèles $3D$ de bâtiments
+    }
+    \author{
+        \begin{tabular}[t]{c@{\extracolsep{4em}}c@{\extracolsep{4em}}c@{\extracolsep{4em}}c}
+            Oussama Ennafii${}^1$ & Arnaud Le Bris${}^1$ & Florent Lafarge${}^2$ & Clément Mallet${}^1$ \\
+        \end{tabular}
+        {}\\
+        \\
+        ${}^1$        Univ. Paris-Est, LaSTIG MATIS, IGN, ENSG, 94160 Saint-Mandé, France\\
+        ${}^2$        Inria, Titane, 06902 Sophia Antipolis, France
+        {}\\
+        \\
+        oussama.ennafii@ign.fr\\
+    }
+    \maketitle
+    \thispagestyle{empty}
+    \begin{figure}[H]
+        \begin{center}
+            \includestandalone[mode=buildnew, width=\textwidth]{graphical_abstract}
+            \caption{\label{fig::pipeline} Paradigme d'évaluation sémantique proposé: en plus du modèle topologique illustré en (b), des attributs sont extraits à partir de cartes de hauteur, comme représenté par la différence calculée entre la hauteur du modèle et le Modèle Numérique de Surface en (c). Les images géospatiales à très haute résolution spatiale peuvent également être utilisées pour caractériser des modèles en comparant leurs projections à des gradients locaux (voir (d)). En se fondant sur ces attributs, les erreurs sont prédites à l'aide d'un classificateur préétabli.}
+        \end{center}
+    \end{figure}
+    Bien que la reconstruction automatique de modèles $3D$ urbains à partir de données géospatiales (Lidar, imagerie optique multi-vues aéroportée ou satellite) soit communément abordée dans la littérature et opérationnelle dans de nombreux logiciels, les modèles produits sont très souvent affectés par des erreurs. Aucune méthode n'est capable d'appréhender la grande diversité au sein des villes et entre milieux urbains aujourd'hui. Aussi, dans un cadre de production, des opérateurs doivent évaluer visuellement, à l'échelle de la ville, la validité des modèles et détecter des erreurs de modélisation qui sont inévitables. Un tel processus repose sur une forte expertise. Elle prend beaucoup de temps (2 h/km$^2$/expert).\\
+
+    Dans ce travail, nous proposons une approche d'évaluation automatique de la qualité des modèles $3D$ de bâtiments, indépendante de la méthode de reconstruction en entrée, à l'échelle du bâtiment. Cela permet à la fois d'effectuer des corrections a posteriori sur les modèles reconstruits, de la détection de changements et de la sélection des méthodes de reconstruction les plus adaptées selon les environnements urbains et les types de bâtiments.\\
+
+    Notre approche se fonde sur un mécanisme standard de classification supervisée. Les erreurs potentielles sont tout d'abord compilées selon une taxonomie hiérarchique, polyvalente et paramétrable (trois niveaux de \textit{finesse} sémantique pour un total de dix erreurs pour la taxonomie pleinement développée au LoD-2). Celle-ci permet pour la première fois de démêler les erreurs de fidélité et de modélisation, quel que soit le niveau de détail (\textit{LoD}) des bâtiments modélisés. La qualité des modèles est prédite à partir des propriétés géométriques des bâtiments et, le cas échéant, d'images géospatiales à Très Haute Résolution Spatiale et de cartes de profondeur (Modèles Numériques de Surface - MNS, cf. Figure~\ref{fig::pipeline}). Concernant les attributs géométriques, des statistiques sont calculées, pour chaque bâtiment, sur des caractéristiques géométriques de facettes. Les attributs altimétriques résultent de l'analyse de l'histogramme des résidus altimétriques entre le MNS et le modèle. Dernièrement, les arêtes du modèle 3D sont comparées aux images THR en calculant des scores de corrélation entre le gradient local et la normale de l'arête. Ce jeu d'attributs génériques et manuellement construit (20 attributs par modalité) alimente un classifieur supervisé de type Forêt Aléatoire. Des cas \textit{Multi-classes} (pour chaque instance, on prédit une seule étiquette qui prend plusieurs valeurs) et \textit{Multi-labels} (pour chaque instance, on prédit plusieures étiquettes binaires) sont pris en compte selon le niveau de détail et le niveau de sémantisation souhaité. En raison de l'indépendance entre les classes d'erreurs, nous avons la possibilité de retrouver toutes ces classes simultanément. \\
+        
+    En comparant les résultats du processus proposé sur plusieurs zones urbaines de typologie variée (Paris: urbain dense, Elancourt: résidentiel, Nantes: urbain épars), nous pouvons détecter de manière satisfaisante, en moyenne, $96\%$ des erreurs les plus fréquentes (sur plus de 3000 bâtiments étiquetés manuellement). Devant la complexité d'obtenir des données de vérité terrain et donc des échantillons d'apprentissage pour les classifieurs, une analyse supplémentaire est menée sur la capacité de transfert des modèles de classification entre zones urbaines.\\
+
+    \bibliographystyle{abbrv}
+    \begin{spacing}{0.01}
+        \bibliography{references}
+    \end{spacing}
+    
+\end{document}
     
