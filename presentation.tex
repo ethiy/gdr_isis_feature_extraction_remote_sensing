@@ -304,7 +304,7 @@
                 \end{enumerate}
 
             \end{frame}
-            \begin{frame}{\emph{Atomic} errors for $2.5D$ overhead reconstruction}
+            \begin{frame}[plain]{\emph{Atomic} errors for $2.5D$ overhead reconstruction}
                 \only<1-6>{
                     For a \gls{elod} $ = $ \gls{lod}-2, we propose:
                     \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
@@ -337,7 +337,7 @@
                             \end{subfigure}
                             \hspace{10pt}
                             \begin{subfigure}{.28\textwidth}
-                                \fbox{\includegraphics[width=\textwidth]{images/errors/building/altimetric}}
+                                \fbox{\includegraphics[width=\textwidth]{images/errors/building/footprint_topology}}
                                 \caption{\label{fig::bul_height} Inaccurate footprint topology}
                             \end{subfigure}
                             \caption{Building \emph{atomic} errors illustration.}
@@ -522,104 +522,106 @@
                     \item<5-> We adapt any \textbf{Multi-Class} or \textbf{binary} classifier to be the \textbf{Multi-Label} setting using a \emph{OnevsAll} strategy.
                 \end{itemize}
             \end{frame}
-    \section{Results}
-        \begin{frame}{Used Data}
-            \begin{itemize}[leftmargin=6em, font=\color{IGNDarkGreen}]
-                \item[Town:]<1-> Elancourt (Yvelines, France);
-                \item[Area:]<2-> \SI{15}{\km\squared};
-                \item[Buildings:]<3-> $1501$;
-                \item[Type:]<4-> mostly residential and insutrial districts with some administrative buildings;
-                \item[Algorithm:]<5-> $\text{Bati3D}^\text{\textregistered}$~\footfullcite{Durupt2006}.
-            \end{itemize}
-        \end{frame}
-        \begin{frame}[plain]{Ground truth statistics}
-            \begin{table}
-                \scriptsize
-                \begin{center}
-                    \begin{tabular}{|x{1.8cm} | x{1.4cm} | x{2cm} | x{2cm} | x{2cm}|}
-                        \hline
-                        \multicolumn{1}{|c|}{\textbf{Error Family}} & \textbf{Occurrence ratio} & \textbf{\emph{Atomic} error} & \textbf{Family conditional occurrence ratio} & \textbf{Absolute occurrence ratio} \\
-                        \hline
-                        Unqualifiable & $0.0180$ & --- & --- & --- \\
-                        \hline
-                        \hline
-                        \multirow{4}{*}{\shortstack{Building\\Errors}} & \multirow{4}{*}{$0.8235$} & Over segmentation & $0.8285$ & $0.6822$\\
-                        \cline{3-5}
-                            &                   & Under segmentation & $0.2824$ & $0.2325$ \\
-                        \cline{3-5}
-                            &                   & Imprecise footprint & $0.1521$ & $0.1252$ \\
-                        \cline{3-5}
-                            &                   & Imprecise height & $0.0057$ & $0.0047$ \\
-                        \hline
-                        \hline
-                        \multirow{4}{*}{Facet Errors} & \multirow{4}{*}{$0.7249$} & Over segmentation & $0.8971$ & $0.6502$ \\
-                        \cline{3-5}
-                            &                   & Under segmentation & $0.1314$ & $0.0953$ \\
-                        \cline{3-5}
-                            &                   & Imprecise segmentation & $0.1351$ & $0.9793$ \\
-                        \cline{3-5}
-                            &                   & Imprecise slope & $0.0193$ & $0.0140$ \\
-                        \hline
-                    \end{tabular}
-                \end{center}
-            \end{table}            
-        \end{frame}
-        \begin{frame}[plain]{Results at $\textit{finesse}=2$}
-            \begin{table}
-                \scriptsize
-                \begin{center}
-                    \begin{tabular}{|x{1cm} | x{.8cm} x{.8cm} | x{.8cm} x{.8cm} | x{.8cm} x{.8cm} | x{.8cm} x{.8cm}|}
-                        \hline
-                        &\multicolumn{2}{x{1.6cm}|}{\textbf{Geometry}} & \multicolumn{2}{x{1.6cm}|}{\textbf{Geom. $\cup$ Height}} & \multicolumn{2}{x{1.6cm}|}{\textbf{Geom. $\cup$ Image}} & \multicolumn{2}{|x{1.6cm}|}{\textbf{All}}\\
-                        \cline{2-9}
-                        &\textbf{Recall} & \textbf{Prec.} & \textbf{Recall} & \textbf{Prec.} & \textbf{Recall} & \textbf{Prec.} & \textbf{Recall} & \textbf{Prec.}\\
-                        \hline
-                        Building errors & $99.76$ & \textbf{84.16} & $99.76$ & $84.11$& $99.92$ & $83.84$ & \textbf{100} & $83.85$ \\
-                        \hline
-                        Facet errors & $90.81$ & $98.02$ & \textbf{91.08} & \textbf{98.41} & $90.44$ & $97.62$ & $90.53$ & $97.82$ \\
-                        \hline
-                    \end{tabular}
-                \end{center}
-            \end{table}
-        \end{frame}
-        \begin{frame}[plain]{Results at $\textit{finesse}=3$}
-            \begin{table}
-                \scriptsize
-                \begin{center}
-                    \begin{tabular}{|x{1.4cm} | x{.8cm} x{.8cm} | x{.8cm} x{.8cm} | x{.8cm} x{.8cm} | x{.8cm} x{.8cm}|}
-                        \hline
-                        &\multicolumn{2}{x{1.6cm}|}{\textbf{Geometry}} & \multicolumn{2}{x{1.6cm}|}{\textbf{Geom. $\cup$ Height}} & \multicolumn{2}{x{1.6cm}|}{\textbf{Geom. $\cup$ Image}} & \multicolumn{2}{|x{1.6cm}|}{\textbf{All}}\\
-                        \cline{2-9}
-                        &\textbf{Recall} & \textbf{Prec.} & \textbf{Recall} & \textbf{Prec.} & \textbf{Recall} & \textbf{Prec.} & \textbf{Recall} & \textbf{Prec.}\\
-                        \hline
-                        \textit{BOS} & \textbf{94.34} & $77.09$ &$93.36$ & \textbf{77.66} &$92.38$ & $77.04$ &$92.19$ & $76.69$ \\
-                        \hline
-                        \textit{BUS} & $34.38$ & $76.43$ &$31.52$ & \textbf{78.57} & \textbf{42.98} & $76.53$ &$41.55$ & $77.96$ \\
-                        \hline
-                        \textit{BInf} & \textbf{22.34} & \textbf{68.85} & $22.34$ & $67.74$ &$18.09$ & $64.15$ &$18.62$ & $64.81$ \\
-                        \hline
-                        \textit{BImH} & $0$ & --- & $0$ & --- & $0$ & --- &$0$ & $0$ \\
-                        \hline
-                        \hline
-                        \textit{FOS} & $98.77$ & \textbf{98.77} & \textbf{98.87} & $98.67$ &$98.67$ & $98.47$ &$98.67$ & $98.37$ \\
-                        \hline
-                        \textit{FUS} & \textbf{0.70} & \textbf{50.00} &$0.70$ & $33.34$ & \textbf{0.70} & \textbf{50.00} & \textbf{0.70} & \textbf{50.00} \\
-                        \hline
-                        \textit{FIS} & \textbf{1.36} & \textbf{66.67} &$1.36$ & $50.00$ &$1.36$ & $28.57$ &$1.36$ & $40.00$ \\
-                        \hline
-                        \textit{FImS} & $0$ & --- & $0$ & --- & $0$ & --- &$0$ & --- \\
-                        \hline
-                    \end{tabular}
-                \end{center}
-            \end{table}
-        \end{frame}
-        \begin{frame}{Discussion}
-            \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
-                \item<1-> Familly errors are detected better at $\textit{finesse}=2$;
-                \item<2-> Among the \textbf{Facet Errors}, all but \textbf{Facet Over segmentation} suffer from the unbalanced dataset ($ < 7\%$ among the $1501$ instances) $\Rightarrow$ small recall and big overall accuracy.
-                \item<3-> Geometric features alone can predict errors with a comparable order of accuracy as with other combinations. It is only outperformed for a limited individual cases (\textbf{Building under segmentation}: $\Delta recall > 20\%$).
-            \end{itemize}
-        \end{frame}
+    \section{Experiments}
+        \subsection{Data}
+            \begin{frame}{Used Data}
+                \begin{itemize}[leftmargin=6em, font=\color{IGNDarkGreen}]
+                    \item[Town:]<1-> Elancourt (Yvelines, France);
+                    \item[Area:]<2-> \SI{15}{\km\squared};
+                    \item[Buildings:]<3-> $1501$;
+                    \item[Type:]<4-> mostly residential and insutrial districts with some administrative buildings;
+                    \item[Algorithm:]<5-> $\text{Bati3D}^\text{\textregistered}$~\footfullcite{Durupt2006}.
+                \end{itemize}
+            \end{frame}
+            \begin{frame}[plain]{Ground truth statistics}
+                \begin{table}
+                    \scriptsize
+                    \begin{center}
+                        \begin{tabular}{|x{1.8cm} | x{1.4cm} | x{2cm} | x{2cm} | x{2cm}|}
+                            \hline
+                            \multicolumn{1}{|c|}{\textbf{Error Family}} & \textbf{Occurrence ratio} & \textbf{\emph{Atomic} error} & \textbf{Family conditional occurrence ratio} & \textbf{Absolute occurrence ratio} \\
+                            \hline
+                            Unqualifiable & $0.0180$ & --- & --- & --- \\
+                            \hline
+                            \hline
+                            \multirow{4}{*}{\shortstack{Building\\Errors}} & \multirow{4}{*}{$0.8235$} & Over segmentation & $0.8285$ & $0.6822$\\
+                            \cline{3-5}
+                                &                   & Under segmentation & $0.2824$ & $0.2325$ \\
+                            \cline{3-5}
+                                &                   & Imprecise footprint & $0.1521$ & $0.1252$ \\
+                            \cline{3-5}
+                                &                   & Imprecise height & $0.0057$ & $0.0047$ \\
+                            \hline
+                            \hline
+                            \multirow{4}{*}{Facet Errors} & \multirow{4}{*}{$0.7249$} & Over segmentation & $0.8971$ & $0.6502$ \\
+                            \cline{3-5}
+                                &                   & Under segmentation & $0.1314$ & $0.0953$ \\
+                            \cline{3-5}
+                                &                   & Imprecise segmentation & $0.1351$ & $0.9793$ \\
+                            \cline{3-5}
+                                &                   & Imprecise slope & $0.0193$ & $0.0140$ \\
+                            \hline
+                        \end{tabular}
+                    \end{center}
+                \end{table}            
+            \end{frame}
+        \subsection{Results}
+            \begin{frame}[plain]{Results at $\textit{finesse}=2$}
+                \begin{table}
+                    \scriptsize
+                    \begin{center}
+                        \begin{tabular}{|x{1cm} | x{.8cm} x{.8cm} | x{.8cm} x{.8cm} | x{.8cm} x{.8cm} | x{.8cm} x{.8cm}|}
+                            \hline
+                            &\multicolumn{2}{x{1.6cm}|}{\textbf{Geometry}} & \multicolumn{2}{x{1.6cm}|}{\textbf{Geom. $\cup$ Height}} & \multicolumn{2}{x{1.6cm}|}{\textbf{Geom. $\cup$ Image}} & \multicolumn{2}{|x{1.6cm}|}{\textbf{All}}\\
+                            \cline{2-9}
+                            &\textbf{Recall} & \textbf{Prec.} & \textbf{Recall} & \textbf{Prec.} & \textbf{Recall} & \textbf{Prec.} & \textbf{Recall} & \textbf{Prec.}\\
+                            \hline
+                            Building errors & $99.76$ & \textbf{84.16} & $99.76$ & $84.11$& $99.92$ & $83.84$ & \textbf{100} & $83.85$ \\
+                            \hline
+                            Facet errors & $90.81$ & $98.02$ & \textbf{91.08} & \textbf{98.41} & $90.44$ & $97.62$ & $90.53$ & $97.82$ \\
+                            \hline
+                        \end{tabular}
+                    \end{center}
+                \end{table}
+            \end{frame}
+            \begin{frame}[plain]{Results at $\textit{finesse}=3$}
+                \begin{table}
+                    \scriptsize
+                    \begin{center}
+                        \begin{tabular}{|x{1.4cm} | x{.8cm} x{.8cm} | x{.8cm} x{.8cm} | x{.8cm} x{.8cm} | x{.8cm} x{.8cm}|}
+                            \hline
+                            &\multicolumn{2}{x{1.6cm}|}{\textbf{Geometry}} & \multicolumn{2}{x{1.6cm}|}{\textbf{Geom. $\cup$ Height}} & \multicolumn{2}{x{1.6cm}|}{\textbf{Geom. $\cup$ Image}} & \multicolumn{2}{|x{1.6cm}|}{\textbf{All}}\\
+                            \cline{2-9}
+                            &\textbf{Recall} & \textbf{Prec.} & \textbf{Recall} & \textbf{Prec.} & \textbf{Recall} & \textbf{Prec.} & \textbf{Recall} & \textbf{Prec.}\\
+                            \hline
+                            \textit{BOS} & \textbf{94.34} & $77.09$ &$93.36$ & \textbf{77.66} &$92.38$ & $77.04$ &$92.19$ & $76.69$ \\
+                            \hline
+                            \textit{BUS} & $34.38$ & $76.43$ &$31.52$ & \textbf{78.57} & \textbf{42.98} & $76.53$ &$41.55$ & $77.96$ \\
+                            \hline
+                            \textit{BInf} & \textbf{22.34} & \textbf{68.85} & $22.34$ & $67.74$ &$18.09$ & $64.15$ &$18.62$ & $64.81$ \\
+                            \hline
+                            \textit{BImH} & $0$ & --- & $0$ & --- & $0$ & --- &$0$ & $0$ \\
+                            \hline
+                            \hline
+                            \textit{FOS} & $98.77$ & \textbf{98.77} & \textbf{98.87} & $98.67$ &$98.67$ & $98.47$ &$98.67$ & $98.37$ \\
+                            \hline
+                            \textit{FUS} & \textbf{0.70} & \textbf{50.00} &$0.70$ & $33.34$ & \textbf{0.70} & \textbf{50.00} & \textbf{0.70} & \textbf{50.00} \\
+                            \hline
+                            \textit{FIS} & \textbf{1.36} & \textbf{66.67} &$1.36$ & $50.00$ &$1.36$ & $28.57$ &$1.36$ & $40.00$ \\
+                            \hline
+                            \textit{FImS} & $0$ & --- & $0$ & --- & $0$ & --- &$0$ & --- \\
+                            \hline
+                        \end{tabular}
+                    \end{center}
+                \end{table}
+            \end{frame}
+            \begin{frame}{Discussion}
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item<1-> Familly errors are detected better at $\textit{finesse}=2$;
+                    \item<2-> Among the \textbf{Facet Errors}, all but \textbf{Facet Over segmentation} suffer from the unbalanced dataset ($ < 7\%$ among the $1501$ instances) $\Rightarrow$ small recall and big overall accuracy.
+                    \item<3-> Geometric features alone can predict errors with a comparable order of accuracy as with other combinations. It is only outperformed for a limited individual cases (\textbf{Building under segmentation}: $\Delta recall > 20\%$).
+                \end{itemize}
+            \end{frame}
     \section{Perspectives}
         \subsection{Data augmentation}
             \begin{frame}{The need for more data}
