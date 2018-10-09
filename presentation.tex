@@ -252,7 +252,13 @@
             \end{frame}
     \section{Methodology}
         \subsection{Overview}
-            \begin{frame}{How to predict reconstruction errors?}
+            % \begin{frame}{The Qualification pipeline}
+            %     \begin{figure}
+            %         \includestandalone[mode=buildnew, width=1.1\textwidth]{graphical_abstract}
+            %         \caption{\label{fig::pipeline} Pipeline describing the quality evaluation process.}
+            %     \end{figure}
+            % \end{frame}
+            \begin{frame}{Benefits of evaluation through prediction}
                 The problem is modeled as a supervised learning one based on an established error taxonomy:
                 \begin{enumerate}[label = (\roman*)., font=\color{IGNGreen}]
                     \item<2-> flexible: the error taxonomy is parametrizable;
@@ -267,12 +273,6 @@
                     \item<9-> lightweight: does not involve manual reference data at evaluation time.
                 \end{enumerate}
             \end{frame}
-            % \begin{frame}{The Qualification pipeline}
-            %     \begin{figure}
-            %         \includestandalone[mode=buildnew, width=1.1\textwidth]{graphical_abstract}
-            %         \caption{\label{fig::pipeline} Pipeline describing the quality evaluation process.}
-            %     \end{figure}
-            % \end{frame}
         \subsection{Error Taxonomy}
             \begin{frame}{Bidimensional taxonomy}
                 In order to establish our taxonomy, two criterea are taken into account:
