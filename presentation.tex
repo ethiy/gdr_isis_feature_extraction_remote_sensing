@@ -52,6 +52,7 @@
 
 
 \newacronym{lod}{LoD}{Level of Detail}
+\newacronym{elod}{eLoD}{evalution Level of Detail}
 \newacronym{lidar}{LiDAR}{Light Detection and Ranging}
 \newacronym{dsm}{DSM}{Digital Surface Model}
 \newacronym{gui}{GUI}{Graphical User Interface}
@@ -252,12 +253,12 @@
             \end{frame}
     \section{Methodology}
         \subsection{Overview}
-            % \begin{frame}{The Qualification pipeline}
-            %     \begin{figure}
-            %         \includestandalone[mode=buildnew, width=1.1\textwidth]{graphical_abstract}
-            %         \caption{\label{fig::pipeline} Pipeline describing the quality evaluation process.}
-            %     \end{figure}
-            % \end{frame}
+            \begin{frame}{The Qualification pipeline}
+                \begin{figure}
+                    \includegraphics[width=1.1\textwidth]{graphical_abstract}
+                    \caption{\label{fig::pipeline} Pipeline describing the quality evaluation process.}
+                \end{figure}
+            \end{frame}
             \begin{frame}{Benefits of evaluation through prediction}
                 The problem is modeled as a supervised learning one based on an established error taxonomy:
                 \begin{enumerate}[label = (\roman*)., font=\color{IGNGreen}]
@@ -299,24 +300,25 @@
                             \includegraphics[height=.2\textheight]{images/citygml_lod}
                         \end{center}
                     \end{figure}
-                    \item<4-> \emph{finesse} $3$ $\longrightarrow$ \emph{atomic} errors.
+                    \item<4-> \emph{finesse} $= 3$ $\longrightarrow$ \emph{atomic} errors.
                 \end{enumerate}
 
             \end{frame}
-            \begin{frame}{\emph{Atomic} errors example}
-                \only<1-5>{
-                    For a \gls{lod} $ = 2$, we propose:
+            \begin{frame}{\emph{Atomic} errors for $2.5D$ overhead reconstruction}
+                \only<1-6>{
+                    For a \gls{elod} $ = $ \gls{lod}-2, we propose:
                     \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
                         \item<1-> \textbf{Building Errors}:
                         \begin{itemize}[leftmargin=10em, font=\color{IGNDarkGreen}]
-                            \item[Under segmentation:]<2-> two or more building reconstructed as one;
-                            \item[Over segmentation:]<3-> one building subdivided into two or more buildings;
-                            \item[Imprecise footprint:]<4-> inexact building footprint;
-                            \item[Imprecise height:]<5-> inexact building height;
+                            \item[Under segmentation:]<2-> n > 1 buildings reconstructed as one;
+                            \item[Over segmentation:]<3-> one building subdivided into n > 1;
+                            \item[Imprecise footprint borders:]<4-> footprint borders are imprecise;
+                            \item[Inaccurate footprint topology:]<5-> footprint suffers from topological defects: inner courts or wrong primitive fitting;
+                            \item[Imprecise geometry:]<6-> inaccurate geometric estimation. If \textbf{\acrshort{elod}} $>$ \acrshort{lod}-0 $\cup$ \acrshort{lod}-1, this error is not reported (redundant with facet errors);
                         \end{itemize}
                     \end{itemize}
                 }
-                \only<6>{
+                \only<7>{
                     \begin{figure}
                         \begin{center}
                             \begin{subfigure}{.28\textwidth}
@@ -331,30 +333,31 @@
                             \hspace{10pt}
                             \begin{subfigure}{.28\textwidth}
                                 \fbox{\includegraphics[width=\textwidth]{images/errors/building/footprint}}
-                                \caption{\label{fig::bul_footprint} Imprecise footprint}
+                                \caption{\label{fig::bul_footprint} Imprecise footprint border}
                             \end{subfigure}
                             \hspace{10pt}
                             \begin{subfigure}{.28\textwidth}
                                 \fbox{\includegraphics[width=\textwidth]{images/errors/building/altimetric}}
-                                \caption{\label{fig::bul_height} Imprecise height}
+                                \caption{\label{fig::bul_height} Inaccurate footprint topology}
                             \end{subfigure}
                             \caption{Building \emph{atomic} errors illustration.}
                         \end{center}
                     \end{figure}
                 }
-                \only<7-11>{
+                \only<8-13>{
                     For a \gls{lod} $ = 2$, we propose:
                     \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
-                        \item<7-> \textbf{Facet Errors}:
+                        \item<8-> \textbf{Facet Errors}:
                         \begin{itemize}[leftmargin=10em, font=\color{IGNDarkGreen}]
-                            \item[Under segmentation:]<8-> two or more facets reconstructed as one;
-                            \item[Over segmentation:]<9-> one facet subdivided into two or more facets;
-                            \item[Imprecise Segmentation:]<10-> inexact edge betweeen facets;
-                            \item[Imprecise slope:]<11-> inexact facet slope.
+                            \item[Under segmentation:]<9-> n > 1 facets modeled as one;
+                            \item[Over segmentation:]<10-> one facet subdivided into n > 1 ones;
+                            \item[Imprecise borders:]<11-> borders are imprecise;
+                            \item[Inaccurate topology:]<12-> the facet suffers from topological defects like a wrong primitive fitting;
+                            \item[Imprecise geometry:]<13-> inaccurate facet geometric estimation.
                         \end{itemize}
                     \end{itemize}
                 }
-                \only<12>{
+                \only<14>{
                     \begin{figure}
                         \begin{center}
                             \begin{subfigure}{.28\textwidth}
@@ -369,31 +372,36 @@
                             \hspace{10pt}
                             \begin{subfigure}{.28\textwidth}
                                 \fbox{\includegraphics[width=\textwidth]{images/errors/facet/mis_segmentation}}
-                                \caption{\label{fig::fac_footprint} Facet imprecise segmentation}
+                                \caption{\label{fig::fac_footprint} Facet imprecise borders}
+                            \end{subfigure}
+                            \hspace{10pt}
+                            \begin{subfigure}{.28\textwidth}
+                                \fbox{\includegraphics[width=\textwidth]{images/errors/facet/topology}}
+                                \caption{\label{fig::fac_height} Inaccurate topology}
                             \end{subfigure}
                             \hspace{10pt}
                             \begin{subfigure}{.28\textwidth}
                                 \fbox{\includegraphics[width=\textwidth]{images/errors/facet/slope}}
-                                \caption{\label{fig::fac_height} Imprecise slope}
+                                \caption{\label{fig::fac_height} Imprecise geometry}
                             \end{subfigure}
                             \caption{Facet \emph{atomic} errors illustration.}
                         \end{center}
                     \end{figure}
                 }
             \end{frame}
+            \begin{frame}{Taxonomy parameters}
+                The qualification has $3$ parameters:
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item<1-> \emph{finesse}: the semantic level desired;
+                    \item<2-> $\gls{elod}$: the evaluation level of details;
+                    \item<3-> \emph{exclusivity}: report only the lowest \gls{lod} errors (\emph{exclusive}) or all errors (\emph{non exclusive}).
+                \end{itemize}
+            \end{frame}
             \begin{frame}{Taxonomy summary}
                 \begin{figure}
                     \includestandalone[mode=buildnew, width=\textwidth]{taxonomy_tree}
                     \caption{\label{fig::tree_taxonomy} Summary for the hierarchical taxonomy.}
                 \end{figure}
-            \end{frame}
-            \begin{frame}{Qualification using error taxonomy}
-                The qualification has $3$ parameters:
-                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
-                    \item<1-> \emph{finesse}: the semantic level desired;
-                    \item<2-> $\gls{lod}$: the diagnostic level of details. Default $ = \gls{lod}(input) $;
-                    \item<3-> \emph{exclusivity}: report only the lowest \gls{lod} errors (\emph{exclusive}) or all errors (\emph{non exclusive}).
-                \end{itemize}
             \end{frame}
         \subsection{Features}
             \begin{frame}{Descriptor types}
@@ -415,6 +423,7 @@
                     \text{features}(m) = \begin{bmatrix}
                             S(\{\vert \{e: e \in f\} \vert : f \in facets(m)\})\\
                             S(\{\mathscr{A}(f) : f \in facets(m)\})\\
+                            S(\{\mathscr{C}(f) : f \in facets(m)\})\\
                             S(\{d(\mathscr{C}(f), \mathscr{C}(g)) : (f, g) \in facets(m)^2 \cap E(m)\})\\
                             S(\{acos(\vec{n}(f) . \vec{n}(g)) : (f, g) \in facets(m)^2 \cap E(m)\})
                     \end{bmatrix}
@@ -517,9 +526,9 @@
         \begin{frame}{Used Data}
             \begin{itemize}[leftmargin=6em, font=\color{IGNDarkGreen}]
                 \item[Town:]<1-> Elancourt (Yvelines, France);
-                \item[Area:]<2-> \SI{0.2}{\km\squared};
-                \item[Buildings:]<3-> $502$;
-                \item[Type:]<4-> mostly residential district with a school and one gas station;
+                \item[Area:]<2-> \SI{15}{\km\squared};
+                \item[Buildings:]<3-> $1501$;
+                \item[Type:]<4-> mostly residential and insutrial districts with some administrative buildings;
                 \item[Algorithm:]<5-> $\text{Bati3D}^\text{\textregistered}$~\footfullcite{Durupt2006}.
             \end{itemize}
         \end{frame}
@@ -527,239 +536,87 @@
             \begin{table}
                 \scriptsize
                 \begin{center}
-                    \begin{tabular}{|x{2cm} | x{1.2cm} | x{2cm} | x{1.5cm} | x{1.5cm}|}
+                    \begin{tabular}{|x{1.8cm} | x{1.4cm} | x{2cm} | x{2cm} | x{2cm}|}
                         \hline
-                        \multicolumn{1}{|c|}{\textbf{Error Family}} & \textbf{Occurence ratio} & \textbf{\emph{Atomic} error} & \textbf{Family conditionnal occurence ratio} & \textbf{Absolute occurence ratio} \\
+                        \multicolumn{1}{|c|}{\textbf{Error Family}} & \textbf{Occurrence ratio} & \textbf{\emph{Atomic} error} & \textbf{Family conditional occurrence ratio} & \textbf{Absolute occurrence ratio} \\
                         \hline
-                        Unqualifiable & $0.0876$ & -- & -- & -- \\
-                        \hline
-                        \hline
-                        \multirow{4}{*}{Building Errors} & \multirow{4}{*}{$0.2408$} & Over segmentation & $0.1365$ & $0.0328$\\
-                        \cline{3-5}
-                            &                   & Under segmentation & $0.4177$ & $0.1006$ \\
-                        \cline{3-5}
-                            &                   & Imprecise footprint & $0.4839$ & $0.1165$ \\
-                        \cline{3-5}
-                            &                   & Imprecise height & $0.0165$ & $0.0040$ \\
+                        Unqualifiable & $0.0180$ & --- & --- & --- \\
                         \hline
                         \hline
-                        \multirow{4}{*}{Facet Errors} & \multirow{4}{*}{$0.81657$} & Over segmentation & $0.8830$ & $0.7203$ \\
+                        \multirow{4}{*}{\shortstack{Building\\Errors}} & \multirow{4}{*}{$0.8235$} & Over segmentation & $0.8285$ & $0.6822$\\
                         \cline{3-5}
-                            &                   & Under segmentation & $0.0842$ & $0.0687$ \\
+                            &                   & Under segmentation & $0.2824$ & $0.2325$ \\
                         \cline{3-5}
-                            &                   & Imprecise segmentation & $0.0806$ & $0.0657$ \\
+                            &                   & Imprecise footprint & $0.1521$ & $0.1252$ \\
                         \cline{3-5}
-                            &                   & Imprecise slope & $0.0327$ & $0.0267$ \\
+                            &                   & Imprecise height & $0.0057$ & $0.0047$ \\
+                        \hline
+                        \hline
+                        \multirow{4}{*}{Facet Errors} & \multirow{4}{*}{$0.7249$} & Over segmentation & $0.8971$ & $0.6502$ \\
+                        \cline{3-5}
+                            &                   & Under segmentation & $0.1314$ & $0.0953$ \\
+                        \cline{3-5}
+                            &                   & Imprecise segmentation & $0.1351$ & $0.9793$ \\
+                        \cline{3-5}
+                            &                   & Imprecise slope & $0.0193$ & $0.0140$ \\
                         \hline
                     \end{tabular}
-                    \caption{\label{tab::label_stats} Label statistics over the dataset.}
+                \end{center}
+            \end{table}            
+        \end{frame}
+        \begin{frame}[plain]{Results at $\textit{finesse}=2$}
+            \begin{table}
+                \scriptsize
+                \begin{center}
+                    \begin{tabular}{|x{1cm} | x{.8cm} x{.8cm} | x{.8cm} x{.8cm} | x{.8cm} x{.8cm} | x{.8cm} x{.8cm}|}
+                        \hline
+                        &\multicolumn{2}{x{1.6cm}|}{\textbf{Geometry}} & \multicolumn{2}{x{1.6cm}|}{\textbf{Geom. $\cup$ Height}} & \multicolumn{2}{x{1.6cm}|}{\textbf{Geom. $\cup$ Image}} & \multicolumn{2}{|x{1.6cm}|}{\textbf{All}}\\
+                        \cline{2-9}
+                        &\textbf{Recall} & \textbf{Prec.} & \textbf{Recall} & \textbf{Prec.} & \textbf{Recall} & \textbf{Prec.} & \textbf{Recall} & \textbf{Prec.}\\
+                        \hline
+                        Building errors & $99.76$ & \textbf{84.16} & $99.76$ & $84.11$& $99.92$ & $83.84$ & \textbf{100} & $83.85$ \\
+                        \hline
+                        Facet errors & $90.81$ & $98.02$ & \textbf{91.08} & \textbf{98.41} & $90.44$ & $97.62$ & $90.53$ & $97.82$ \\
+                        \hline
+                    \end{tabular}
                 \end{center}
             \end{table}
         \end{frame}
-        \begin{frame}[plain]{Results (Geometric only)}
+        \begin{frame}[plain]{Results at $\textit{finesse}=3$}
             \begin{table}
-                \begin{subtable}{.4\textwidth}
-                    \tiny
-                    \begin{center}
-                        \begin{tabular}{x{1cm} x{.5cm} x{.5cm} x{.5cm}}
-                            \toprule
-                            {\bf Error} & {\bf OA} & {\bf Recall} & {\bf Precision} \\
-                            \midrule
-                            Building Errors & $0.82$ & $0.46$ & $0.78$ \\
-                            \midrule
-                            Facet Errors & $0.91$ & $0.96$ & $0.94$ \\
-                            \bottomrule
-                        \end{tabular}
-                        \caption{\tiny\label{tab::finesse2} $finesse = 2$}
-                    \end{center}
-                \end{subtable}
-                \begin{subtable}{.45\textwidth}
-                    \tiny
-                    \begin{center}
-                        \begin{tabular}{x{1.75cm} x{.5cm} x{.5cm} x{.5cm}}
-                            \toprule
-                            {\bf Error} & {\bf OA} & {\bf Recall} & {\bf Precision} \\
-                            \midrule
-                            Buil. Under Seg. & $0.93$ & $0.44$ & $0.85$ \\
-                            \midrule
-                            Buil. Over Seg. & $0.97$ & $0.25$ & $1.0$ \\
-                            \midrule
-                            Footprint & $0.90$ & $0.26$ & $0.88$ \\
-                            \midrule
-                            Height & $0.99$ & $0.0$ & --- \\
-                            \midrule
-                            \midrule
-                            Fac. Under Seg. & $0.90$ & $0.06$ & $0.14$ \\
-                            \midrule
-                            Fac. Over Seg. & $0.99$ & $1.0$ & $0.99$ \\
-                            \midrule
-                            Fac. Impr. Seg. & $0.93$ & $0.03$ & $1.0$\\
-                            \midrule
-                            Slope & $0.97$ & $0.0$ & ---\\
-                            \bottomrule
-                        \end{tabular}
-                        \caption{\tiny\label{tab::finesse3}$finesse = 3$}
-                    \end{center}
-                \end{subtable}
+                \scriptsize
                 \begin{center}
-                    \caption{Test results for a \emph{non exclusive} qualification with $\gls{lod}=2$ using a $10- fold$ classification and only geometric ($16$) features.}
-                \end{center}
-            \end{table}
-        \end{frame}
-        \begin{frame}[plain]{Results (Geometric and Altimetric)}
-            \begin{table}
-                \begin{subtable}{.4\textwidth}
-                    \tiny
-                    \begin{center}
-                        \begin{tabular}{x{1cm} x{.5cm} x{.5cm} x{.5cm}}
-                            \toprule
-                            {\bf Error} & {\bf OA} & {\bf Recall} & {\bf Precision} \\
-                            \midrule
-                            Building Errors & $0.81$ & $0.39$ & $0.76$ \\
-                            \midrule
-                            Facet Errors & $0.92$ & $0.97$ & $0.93$ \\
-                            \bottomrule
-                        \end{tabular}
-                        \caption{\tiny\label{tab::finesse2} $finesse = 2$}
-                    \end{center}
-                \end{subtable}
-                \begin{subtable}{.45\textwidth}
-                    \tiny
-                    \begin{center}
-                        \begin{tabular}{x{1.75cm} x{.5cm} x{.5cm} x{.5cm}}
-                            \toprule
-                            {\bf Error} & {\bf OA} & {\bf Recall} & {\bf Precision} \\
-                            \midrule
-                            Buil. Under Seg. & $0.95$ & $0.63$ & $0.87$ \\
-                            \midrule
-                            Buil. Over Seg. & $0.97$ & $0.16$ & $1.0$ \\
-                            \midrule
-                            Footprint & $0.91$ & $0.24$ & $0.93$ \\
-                            \midrule
-                            Height & $0.99$ & $0.0$ & --- \\
-                            \midrule
-                            \midrule
-                            Fac. Under Seg. & $0.92$ & $0.14$ & $0.41$ \\
-                            \midrule
-                            Fac. Over Seg. & $0.99$ & $1.0$ & $0.99$ \\
-                            \midrule
-                            Fac. Impr. Seg. & $0.92$ & $0.0$ & ---\\
-                            \midrule
-                            Slope & $0.97$ & $0.14$ & $1.0$\\
-                            \bottomrule
-                        \end{tabular}
-                        \caption{\tiny\label{tab::finesse3}$finesse = 3$}
-                    \end{center}
-                \end{subtable}
-                \begin{center}
-                    \caption{Test results for a \emph{non exclusive} qualification with $\gls{lod}=2$ using a $10- fold$ classification and geometric and altimetric ($4\times4 + 10 = 26$) features.}
-                \end{center}
-            \end{table}
-        \end{frame}
-        \begin{frame}[plain]{Results (Geometric and Radiometric)}
-            \begin{table}
-                \begin{subtable}{.4\textwidth}
-                    \tiny
-                    \begin{center}
-                        \begin{tabular}{x{1cm} x{.5cm} x{.5cm} x{.5cm}}
-                            \toprule
-                            {\bf Error} & {\bf OA} & {\bf Recall} & {\bf Precision} \\
-                            \midrule
-                            Building Errors & $0.79$ & $0.35$ & $0.72$ \\
-                            \midrule
-                            Facet Errors & $0.90$ & $0.95$ & $0.92$ \\
-                            \bottomrule
-                        \end{tabular}
-                        \caption{\tiny\label{tab::finesse2} $finesse = 2$}
-                    \end{center}
-                \end{subtable}
-                \begin{subtable}{.45\textwidth}
-                    \tiny
-                    \begin{center}
-                        \begin{tabular}{x{1.75cm} x{.5cm} x{.5cm} x{.5cm}}
-                            \toprule
-                            {\bf Error} & {\bf OA} & {\bf Recall} & {\bf Precision} \\
-                            \midrule
-                            Buil. Under Seg. & $0.95$ & $0.71$ & $0.88$ \\
-                            \midrule
-                            Buil. Over Seg. & $0.96$ & $0.06$ & $1.0$ \\
-                            \midrule
-                            Footprint & $0.89$ & $0.13$ & $1.0$ \\
-                            \midrule
-                            Height & $0.99$ & $0.0$ & --- \\
-                            \midrule
-                            \midrule
-                            Fac. Under Seg. & $0.91$ & $0.09$ & $0.23$ \\
-                            \midrule
-                            Fac. Over Seg. & $0.99$ & $1.0$ & $0.99$ \\
-                            \midrule
-                            Fac. Impr. Seg. & $0.92$ & $0.0$ & ---\\
-                            \midrule
-                            Slope & $0.97$ & $0.07$ & $1.0$\\
-                            \bottomrule
-                        \end{tabular}
-                        \caption{\tiny\label{tab::finesse3}$finesse = 3$}
-                    \end{center}
-                \end{subtable}
-                \begin{center}
-                    \caption{Test results for a \emph{non exclusive} qualification with $\gls{lod}=2$ using a $10- fold$ classification and geometric and radiometric ($4\times4 + 10 = 26$) features.}
-                \end{center}
-            \end{table}
-        \end{frame}
-        \begin{frame}[plain]{Results (All)}
-            \begin{table}
-                \begin{subtable}{.4\textwidth}
-                    \tiny
-                    \begin{center}
-                        \begin{tabular}{x{1cm} x{.5cm} x{.5cm} x{.5cm}}
-                            \toprule
-                            {\bf Error} & {\bf OA} & {\bf Recall} & {\bf Precision} \\
-                            \midrule
-                            Building Errors & $0.79$ & $0.35$ & $0.75$ \\
-                            \midrule
-                            Facet Errors & $0.90$ & $0.96$ & $0.92$ \\
-                            \bottomrule
-                        \end{tabular}
-                        \caption{\tiny\label{tab::finesse2} $finesse = 2$}
-                    \end{center}
-                \end{subtable}
-                \begin{subtable}{.45\textwidth}
-                    \tiny
-                    \begin{center}
-                        \begin{tabular}{x{1.75cm} x{.5cm} x{.5cm} x{.5cm}}
-                            \toprule
-                            {\bf Error} & {\bf OA} & {\bf Recall} & {\bf Precision} \\
-                            \midrule
-                            Buil. Under Seg. & $0.96$ & $0.71$ & $0.88$ \\
-                            \midrule
-                            Buil. Over Seg. & $0.97$ & $0.06$ & $1.0$ \\
-                            \midrule
-                            Footprint & $0.89$ & $0.15$ & $1.0$ \\
-                            \midrule
-                            Height & $0.99$ & $0.0$ & --- \\
-                            \midrule
-                            \midrule
-                            Fac. Under Seg. & $0.92$ & $0.11$ & $0.36$ \\
-                            \midrule
-                            Fac. Over Seg. & $0.99$ & $.99$ & $0.99$ \\
-                            \midrule
-                            Fac. Impr. Seg. & $0.92$ & $0.0$ & ---\\
-                            \midrule
-                            Slope & $0.97$ & $0.07$ & $1.0$\\
-                            \bottomrule
-                        \end{tabular}
-                        \caption{\tiny\label{tab::finesse3}$finesse = 3$}
-                    \end{center}
-                \end{subtable}
-                \begin{center}
-                    \caption{Test results for a \emph{non exclusive} qualification with $\gls{lod}=2$ using a $10- fold$ classification and all ($4\times4 + 10 + 10 = 36$) features.}
+                    \begin{tabular}{|x{1.4cm} | x{.8cm} x{.8cm} | x{.8cm} x{.8cm} | x{.8cm} x{.8cm} | x{.8cm} x{.8cm}|}
+                        \hline
+                        &\multicolumn{2}{x{1.6cm}|}{\textbf{Geometry}} & \multicolumn{2}{x{1.6cm}|}{\textbf{Geom. $\cup$ Height}} & \multicolumn{2}{x{1.6cm}|}{\textbf{Geom. $\cup$ Image}} & \multicolumn{2}{|x{1.6cm}|}{\textbf{All}}\\
+                        \cline{2-9}
+                        &\textbf{Recall} & \textbf{Prec.} & \textbf{Recall} & \textbf{Prec.} & \textbf{Recall} & \textbf{Prec.} & \textbf{Recall} & \textbf{Prec.}\\
+                        \hline
+                        \textit{BOS} & \textbf{94.34} & $77.09$ &$93.36$ & \textbf{77.66} &$92.38$ & $77.04$ &$92.19$ & $76.69$ \\
+                        \hline
+                        \textit{BUS} & $34.38$ & $76.43$ &$31.52$ & \textbf{78.57} & \textbf{42.98} & $76.53$ &$41.55$ & $77.96$ \\
+                        \hline
+                        \textit{BInf} & \textbf{22.34} & \textbf{68.85} & $22.34$ & $67.74$ &$18.09$ & $64.15$ &$18.62$ & $64.81$ \\
+                        \hline
+                        \textit{BImH} & $0$ & --- & $0$ & --- & $0$ & --- &$0$ & $0$ \\
+                        \hline
+                        \hline
+                        \textit{FOS} & $98.77$ & \textbf{98.77} & \textbf{98.87} & $98.67$ &$98.67$ & $98.47$ &$98.67$ & $98.37$ \\
+                        \hline
+                        \textit{FUS} & \textbf{0.70} & \textbf{50.00} &$0.70$ & $33.34$ & \textbf{0.70} & \textbf{50.00} & \textbf{0.70} & \textbf{50.00} \\
+                        \hline
+                        \textit{FIS} & \textbf{1.36} & \textbf{66.67} &$1.36$ & $50.00$ &$1.36$ & $28.57$ &$1.36$ & $40.00$ \\
+                        \hline
+                        \textit{FImS} & $0$ & --- & $0$ & --- & $0$ & --- &$0$ & --- \\
+                        \hline
+                    \end{tabular}
                 \end{center}
             \end{table}
         \end{frame}
         \begin{frame}{Discussion}
             \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
-                \item<1-> Unbalanced \textbf{Building Errors} ($24\%$ among the $502$ instances) $\Rightarrow$ small recall.
-                \item<2-> Among the \textbf{Facet Errors}, all but \textbf{Facet Over segmentation} suffer from the unbalanced dataset ($ < 7\%$ among the $502$ instances) $\Rightarrow$ small recall and big overall accuracy.
+                \item<1-> Familly errors are detected better at $\textit{finesse}=2$;
+                \item<2-> Among the \textbf{Facet Errors}, all but \textbf{Facet Over segmentation} suffer from the unbalanced dataset ($ < 7\%$ among the $1501$ instances) $\Rightarrow$ small recall and big overall accuracy.
                 \item<3-> Geometric features alone can predict errors with a comparable order of accuracy as with other combinations. It is only outperformed for a limited individual cases (\textbf{Building under segmentation}: $\Delta recall > 20\%$).
             \end{itemize}
         \end{frame}
@@ -772,7 +629,7 @@
                     \item to avoid overfitting to a specific urban scene or a specific reconstruction method.
                 \end{itemize}
             \end{frame}
-            \begin{frame}{More annotations}
+            \begin{frame}{Bottleneck: annotations}
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
                     \item<1-> One difficult aspect of the methodology is the annotation phase.
                     \item<2-> A Master's (PPMD) student made a \emph{QT5} \acrshort{gui} python application. It can be used:
@@ -781,14 +638,14 @@
                         \item<4-> for error prediction verification in an operational setup,
                         \item<5-> in a semi-supervised learning pipeline.
                     \end{itemize}
-                    \item<6-> We can also consider error simulation using a reference data.
+                    \item<6-> We can also consider error simulation using TRAPU as a reference data.
                 \end{itemize}
             \end{frame}
-            \begin{frame}{More scenes}
+            \begin{frame}{Transferablility}
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
-                    \item<1-> We need to procure more reconstructed scenes using $\text{Bati3D}^\text{\textregistered}$.
-                    \item<2-> A group of students (ENSG) reconstructed Elancourt and Toulouse using the \emph{3dfier} program~\citep{ledoux2011topologically}: $\gls{lod} = 1$;
-                    \item<3-> We can compare with other reconstruction methods~\citep{Lafarge2012,kelly2017bigsur}.
+                    \item<1-> We need to procure more reconstructed scenes using $\text{Bati3D}^\text{\textregistered}$: Nanted, Paris 13, Paris 11-10-20-12.
+                    \item<2-> A group of students (ENSG) reconstructed Elancourt using the \emph{3dfier} program~\citep{ledoux2011topologically}: $\gls{lod} = 1$;
+                    \item<3-> Florent Lafarge is helping generate more models using other methods~\citep{Lafarge2012}.
                 \end{itemize}
             \end{frame}
         \subsection{Learned features}
@@ -816,6 +673,15 @@
                 \item<2-> We categorize $3D$ model errors into a flexible taxonomy independent from the reconstruction method;
                 \item<3-> We propose a fast, lightweight and modular classification pipeline using supervised learning;
                 \item<4-> We established a baseline for geometric, radiometric and altimetric features.
+            \end{itemize}
+        \end{frame}
+        \begin{frame}{Used tools}
+            \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                \item<1-> 3D scene preparation: computes projections and rasterizes them $\longrightarrow$ C++ project \textbf{proj.city} hosted by GitHub under GPLv3.0;
+                \item<2-> Geoinformation handling: because GDAL is appaling $\longrightarrow$ Python miniproject \textbf{geo2d} hosted by GitHub under GPLv3.0;
+                \item<3-> GIS image annotation tool: because QGIS is also appaling $\longrightarrow$ \textbf{sGrISner} pyqt5 app hosted by GitHub under GPLv3.0;
+                \item<4-> DSM to Pointcloud: because I did not find one $\longrightarrow$ \textbf{dsm2pc} minipython app hosted by GitHub under GPLv3.0; 
+                \item<5-> Python project for building qualification: \textbf{qualcity} hosted by GitHub (private).
             \end{itemize}
         \end{frame}
     \section*{References}
