@@ -1,0 +1,94 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+    
+\usepackage{standalone}
+    
+\usepackage[acronym]{glossaries}
+    
+\usepackage{enumitem}
+    
+\usepackage{xcolor}
+    
+\usepackage{multirow}
+\usepackage{multicol}
+    
+\usepackage{array}
+\newcolumntype{x}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\usepackage{booktabs}
+    
+\usepackage{siunitx}
+\usepackage{mathrsfs, amsmath}
+    
+\usepackage{graphicx}
+\usepackage[font={small, color=IGNDarkGrey}, labelformat=empty]{caption}
+\usepackage{subcaption}
+\DeclareCaptionFont{tiny}{\tiny}
+\captionsetup[subtable]{labelfont={tiny, bf},textfont=normalfont,justification=raggedright}
+\captionsetup[subfigure]{labelfont={tiny, bf},textfont=tiny,justification=raggedright}
+    
+    
+\usepackage{hyperref}
+    
+\usepackage[
+        mcite,
+        backend=bibtex,
+        style=verbose,
+        citestyle=authoryear,
+        bibstyle=numeric,
+        sorting=none,
+        autocite=footnote,
+        maxnames=2,
+        hyperref=true,
+        natbib=true,
+        abbreviate=true
+    ]{biblatex}
+\bibliography{references}
+\setbeamerfont{footnote}{size=\tiny}
+
+
+\usetheme{ign}
+
+
+\newacronym{lod}{LoD}{Level of Detail}
+\newacronym{elod}{eLoD}{evalution Level of Detail}
+\newacronym{lidar}{LiDAR}{Light Detection and Ranging}
+\newacronym{dsm}{DSM}{Digital Surface Model}
+\newacronym{gui}{GUI}{Graphical User Interface}
+
+\title{Semantic $3D$ building model evaluation}
+\subtitle{}
+\institute[LaSTIG STRUDEL]{Univ. Paris Est, LaSTIG STRUDEL, IGN, ENSG}
+\date{\today}
+\author[O.Ennafii]{Oussama Ennafii}
+
+
+\begin{document}
+
+    \begin{frame}[plain]
+        \titlepage{}
+    \end{frame}
+
+    \section{Introduction}
+        \subsection{Context}
+        \subsection{Motivation}
+        \subsection{3D Model evalutation in litterature}
+        \subsection{Contributions}
+
+    \section{Methodology}
+        \subsection{Overview}
+        \subsection{Error taxonomy}
+        \subsection{Extracted features}
+        \subsection{Classification problems}
+
+    \section{Experiments}
+        \subsection{Used data}
+        \subsection{Results}
+        \subsection{Discussion}
+    
+    \section{Conclusion}
+        \subsection{Percpectives}
+        \subsection{Take home message}
+
+\end{document}
