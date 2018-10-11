@@ -26,7 +26,7 @@
 \usepackage{subcaption}
 \DeclareCaptionFont{tiny}{\tiny}
 % \captionsetup[subtable]{labelfont={tiny, bf},textfont=normalfont,justification=raggedright}
-% \captionsetup[subfigure]{labelfont={tiny, bf},textfont=tiny,justification=raggedright}
+\captionsetup[subfigure]{labelfont={tiny, bf},textfont=tiny,justification=raggedright}
 \usepackage{adjustbox}
 
 \usepackage{pifont}
@@ -76,15 +76,75 @@
 
     \section{Introduction}
         \subsection{Context}
+            \begin{frame}{3D model vs. 3D mesh}
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item<1-> $3D$ urban model $\equiv$ polyhedral surface representing a building;
+                    \item<2-> Each facet in a $3D$ model is akin to an architechtural feature;
+                \end{itemize}
+                \only<3>{
+                    \begin{table}
+                        \begin{center}
+                            \begin{tabular}{c c c}
+                                \toprule
+                                & 3D model & 3D mesh\\
+                                \midrule
+                                Compacity & \textcolor{IGNDarkGreen}{+} & \textcolor{red}{-} \\
+                                Fidelity & \textcolor{red}{-} & \textcolor{IGNDarkGreen}{+} \\
+                                Semantics & \textcolor{IGNDarkGreen}{+} & \textcolor{red}{-} \\
+                                \bottomrule
+                            \end{tabular}
+                        \end{center}
+                    \end{table}
+                }
+            \end{frame}
+            \begin{frame}{Level of Detail}
+                \begin{figure}
+                    \includestandalone[mode=buildnew, width=\textwidth]{lods}
+                \end{figure}
+                \only<2-4>{
+                    The model \acrfull{acr::lod} depends on:
+                    \begin{itemize}[label=--]
+                        \item<3-> the intended use,
+                        \item<4-> the input data spatial resolution.
+                    \end{itemize}
+                }
+            \end{frame}
+            \begin{frame}{Urban modeling}
+                Modeling urban scenes, on a large scale, using sensor data:
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item \acrfull{acr::lidar};
+                    \item Stereoscopic images.
+                \end{itemize}
+            \end{frame}
         \subsection{Motivation}
-        \subsection{3D Model evalutation in litterature}
+        \subsection{State of the art}
+            \begin{frame}{How to classify quality evaluation methods?}
+                \begin{itemize}[
+                        label=$\blacktriangleright$,
+                        font=\color{IGNGreen},
+                        itemsep=2em
+                    ]
+                    \item<1-> Based on the output:
+                    \begin{itemize}[label=--, itemsep=1em]
+                        \item<2-> Geometric precision metrics;
+                        \item<2-> Semantic errors.
+                    \end{itemize}
+                    \item<3-> Based on the reference data:
+                    \begin{itemize}[label=--, itemsep=1em]
+                        \item<4-> Manually obtained data;
+                        \item<4-> Sensor data.
+                    \end{itemize}
+                \end{itemize}
+            \end{frame}
             \begin{frame}[plain]{State-of-the-art illustration}
                 \begin{figure}
                     \includegraphics[width=\textwidth]{state_of_the_art}
-                    \caption{\label{fig::bib_summary} State of the art summary.}
                 \end{figure}
             \end{frame}
         \subsection{Contributions}
+            \begin{frame}{Main contributions}
+                
+            \end{frame}
 
     \section{Methodology}
         \begin{frame}{The evalutation pipeline}
