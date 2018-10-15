@@ -21,16 +21,20 @@
 \begin{document}
     \begin{tikzpicture}
     	\node (facet_graph) {\includestandalone[mode=buildnew, height=4cm]{building_graph}};
-        \path (facet_graph) + (-.2, -1) node (f) {\small $f$};
-        \path (facet_graph) + (2, -.8) node (g) {\small $g$};
+        \path (facet_graph) + (-.2, -1) node[green] (f) {\small $f$};
+        \path (facet_graph) + (2, -.8) node[] (g) {\small $g$};
         
-        \path (f) + (-2, -1) node (attributes) {\tiny
+        \path (f) + (-2, -1) node[green] (attributes) {\tiny
         $\begin{bmatrix}
         	Degree(f)\\
             Area(f)\\
-            Circumference(f)\\
-            d(\mathscr{C}(f), \mathscr{C}(g)) : (f, g) \in facets(m)^2 \cap E(m)\})\\
-            acos(\vec{n}(f) . \vec{n}(g)) : (f, g) \in facets(m)^2 \cap E(m)\})
+            Circumference(f)
+         \end{bmatrix}$
+        };
+        \path (f) + (1, -2) node[blue] (attributes) {\tiny
+        $\begin{bmatrix}
+            \vert Centroid(f)- Centroid(g) \vert\\
+            \arccos(\vec{n}(f) . \vec{n}(g))
          \end{bmatrix}$
         };
     \end{tikzpicture}
