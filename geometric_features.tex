@@ -1,0 +1,28 @@
+\documentclass[tikz, border=7pt]{standalone}
+
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{fourier}
+
+\usepackage{xcolor}
+\definecolor{wheat}{RGB}{245,222,179}
+
+\usepackage{standalone}
+
+\usepackage{pgfplots}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes, arrows, shadows, calc, decorations}
+
+\usepackage{amsmath}
+
+\pgfplotsset{compat=1.14}
+
+\begin{document}
+    \begin{tikzpicture}
+    	\node (facet_graph) {\includestandalone[mode=buildnew, height=2cm]{building_graph}};
+        \path (facet_graph) + (-.3, -.5) node (facet) {\tiny $f$};
+        
+        \path (facet) + (0, -1) node (attributes) {};
+    \end{tikzpicture}
+\end{document}
