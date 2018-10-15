@@ -78,8 +78,8 @@
         \subsection{Context}
             \begin{frame}{3D model vs. 3D mesh}
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
-                    \item<1-> $3D$ urban model $\equiv$ polyhedral surface representing a building;
-                    \item<2-> Each facet in a $3D$ model is akin to an architechtural feature;
+                    \item<1-> 3D urban model $\equiv$ polyhedral surface representing a building.
+                    \item<2-> Each facet in a 3D model is akin to an architectural feature.
                 \end{itemize}
                 \uncover<3>{
                     \begin{figure}
@@ -102,12 +102,12 @@
                         \item reconstruction methods lack generality and compacity;
                         \item too many modelling errors require labourious manual corrections.
                     \end{itemize}
-                    \item<2-> Urban $3D$ model semantic diagnostic is not well studied~\citep{nguatem2017modeling}.
+                    \item<2-> Urban 3D model semantic diagnostic is not well studied~\citep{nguatem2017modeling}.
                 \end{itemize}
                 ~\\
                 \uncover<3->{
                     \begin{itemize}[label=Goal $\longrightarrow$, font=\color{purple}, leftmargin=2cm]
-                        \item Detect and describe semantic errors that affects building $3D$ models.
+                        \item Detect and describe semantic errors that affects building 3D models.
                     \end{itemize}
                 }
             \end{frame}
@@ -256,10 +256,26 @@
                     \includegraphics[width=\textwidth]{graphical_abstract}
                 \end{figure}
             \end{frame}
-
             \begin{frame}{Geometric features}
                 \begin{figure}
-                    \includegraphics[width=.25\textwidth]{building_graph}
+                    \includegraphics[height=.75\textheight]{geometric_features}
+                \end{figure}
+            \end{frame}
+            \begin{frame}{Altimetric features}
+                \begin{figure}
+                    \includegraphics[height=.7\textheight]{images/altimetric_features}
+                \end{figure}
+            \end{frame}
+            \begin{frame}{Radiometric features}
+                \begin{figure}
+                    \begin{subfigure}{.48\textwidth}
+                        \includegraphics[width=\textwidth]{images/radio_vector}
+                        \caption{\label{fig::ortho_sup} A building projection and the corresponding orthoimage.}
+                    \end{subfigure}
+                    \begin{subfigure}{.48\textwidth}
+                        \includestandalone[mode=buildnew, width=\textwidth]{radiometric_features}
+                        \caption{\label{fig::hist} For each facet edge, the cosine similarity is computed between its normal and the image gradient, on each intersecting pixel (in green).}
+                    \end{subfigure}
                 \end{figure}
             \end{frame}
         
@@ -283,8 +299,8 @@
                 We use $3$ parameters to extract labels from the taxonomy:
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
                     \item<1-> \emph{finesse}: the semantic level desired;
-                    \item<2-> $\acrshort{acr::elod}$: the evaluation level of details;
-                    \item<3-> \emph{exclusivity}: report only the lowest \acrshort{acr::lod}- errors (\emph{exclusive}) or all errors (\emph{non exclusive}).
+                    \item<2-> $\acrshort{acr::elod}$: the \acrlong{acr::elod};
+                    \item<3-> \emph{exclusivity}: report only the lowest \acrshort{acr::lod} errors (\emph{exclusive}) or all errors (\emph{non exclusive}).
                 \end{itemize}
             \end{frame}
             \begin{frame}{Error taxonomy summary}
