@@ -6,9 +6,6 @@
 \usepackage{tikz}
 \usepackage{fourier}
 
-\usepackage{xcolor}
-\definecolor{darkgreen}{RGB}{0, 155, 85}
-
 \usetikzlibrary{calc, 3d}
 
 \begin{document}
@@ -28,7 +25,7 @@
         
         \begin{scope}[canvas is xy plane at z=1]
         	\path[graph_edge] (-2,2) edge (1.5,6);
-        	\path[graph_edge, blue, line width=3pt] (4,2) edge (1.5,6);
+        	\path[graph_edge] (4,2) edge (1.5,6);
         	\path[graph_edge] (4,2) edge (1.5,-2);
         	\path[graph_edge] (-2,2) edge (1.5,-2);
         \end{scope}
@@ -48,7 +45,7 @@
         \path[graph_edge] (1,-1,2.25) edge (1.5,-2,1);
         
         \begin{scope}[canvas is zy plane at x=5]
-            \path[face, darkgreen] (0,0) -- (2,0) -- (2.75,2.5) -- (2,4) -- (0,4) -- cycle;
+            \path[face] (0,0) -- (2,0) -- (2.75,2.5) -- (2,4) -- (0,4) -- cycle;
 		\end{scope}
         \begin{scope}[canvas is zx plane at y=6]
           	\path[face] (0,0) rectangle (2,3);
