@@ -16,22 +16,9 @@
 
 \usepackage{amsmath}
 
-\tikzstyle{data}=[
-  draw,
-  font=\Large,
-  align=center,
-  minimum height=2.5em,
-  drop shadow,
-  rounded corners
-]
-
 \pgfplotsset{compat=1.14}
 
 \begin{document}
-	\pgfdeclarelayer{background}
-    \pgfdeclarelayer{foreground}
-    \pgfsetlayers{background,main,foreground}
-
     \begin{tikzpicture}
     	\node (residual) at (0,0) {\includegraphics[height=1cm, angle=270]{images/residual}};
         \path (residual.south) + (0,-.2) node (residual_legend) {\tiny (c) Height based};
