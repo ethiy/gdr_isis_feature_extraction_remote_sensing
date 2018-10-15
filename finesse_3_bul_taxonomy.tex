@@ -44,22 +44,7 @@
                                 }
                                 child {
                                     node[bag] (facet_errors) {Facet Errors}
-                                    child {
-                                    node[end, label=right:\textsc{Under segmentation}] {}
-                                }
-                                child {
-                                    node[end, label=right:\textsc{Over segmentation}] {}
-                                }
-                                child {
-                                    node[end, label=right:\textsc{Imprecise footprint borders}] {}
-                                }
-                                child {
-                                    node[end, label=right:\textsc{Inaccurate footprint topology}] {}
-                                }
-                                child {
-                                    node[end, label=right:\textsc{Imprecise slope}] {}
-                                }
-                                edge from parent
+                               edge from parent
                             }
                             edge from parent
                         }
@@ -82,11 +67,6 @@
         \draw[dashed, blue, ultra thick] (b_under.south) + (-1,-1) -- (atomic_max);
         
         \draw[dash dot, ultra thick] (lod_max)  -- (lod_min) node[below, align=left, xshift=-1cm] {\scriptsize LoD0 $\cup$ LoD1} node [above, xshift=-.5cm] {\scriptsize LoD2};
-        
-        \path (facet_errors |- b_under.south) + (-1.5,-1.25) node (temp) {};
-        \path (lod_min |- b_under.south) + (-1.5,-1.25) node (last) {};
-        \draw[decorate, decoration={brace, amplitude=5pt}] (b_under.south) + (-1,-1.25) -- (temp) node[midway, yshift=-2em, align=center]{Family errors:\\possible \textbf{exclusivity}};
-        \draw[decorate, decoration={brace, amplitude=5pt,mirror}] (b_under.south) + (-1,-1.25) -- (last) node[midway, yshift=-2em, align=center]{\textit{Atomic} errors:\\no \textbf{exclusivity}};
     \end{tikzpicture}
 \end{document}
     
