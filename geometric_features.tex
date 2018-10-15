@@ -6,6 +6,7 @@
 
 \usepackage{xcolor}
 \definecolor{wheat}{RGB}{245,222,179}
+\definecolor{darkgreen}{RGB}{0, 155, 85}
 
 \usepackage{standalone}
 
@@ -21,21 +22,25 @@
 \begin{document}
     \begin{tikzpicture}
     	\node (facet_graph) {\includestandalone[mode=buildnew, height=4cm]{building_graph}};
-        \path (facet_graph) + (-.2, -1) node[green] (f) {\small $f$};
-        \path (facet_graph) + (2, -.8) node[] (g) {\small $g$};
+        \path (facet_graph) + (-.2, -1) node (f) {\small $f$};
+        \path (facet_graph) + (2, -.8) node (g) {\small $g$};
         
-        \path (f) + (-2, -1) node[green] (attributes) {\tiny
+        \path (f) + (-2, -1) node[darkgreen] (facet_attributes) {\tiny
         $\begin{bmatrix}
         	Degree(f)\\
             Area(f)\\
             Circumference(f)
          \end{bmatrix}$
         };
-        \path (f) + (1, -2) node[blue] (attributes) {\tiny
+        \path (f) + (1.5, -1.5) node[blue] (edge_attributes) {\tiny
         $\begin{bmatrix}
-            \vert Centroid(f)- Centroid(g) \vert\\
+            \vert\vert Centroid(f)- Centroid(g) \vert\vert_2\\
             \arccos(\vec{n}(f) . \vec{n}(g))
          \end{bmatrix}$
         };
+        
+        \path[draw, ->, line width=1pt, rounded corners=10pt] (f.185) -- (facet_attributes.north);
+        \path (edge_attributes.north |- f.east) + (-.25, .4) node (edge) {};
+        \path[draw, ->, line width=1pt, rounded corners=10pt] (edge) -- (edge |- edge_attributes.north);
     \end{tikzpicture}
 \end{document}
