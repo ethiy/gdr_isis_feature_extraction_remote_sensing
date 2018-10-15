@@ -14,15 +14,24 @@
 \usepackage{tikz}
 \usetikzlibrary{shapes, arrows, shadows, calc, decorations}
 
-\usepackage{amsmath}
+\usepackage{mathrsfs, amsmath}
 
 \pgfplotsset{compat=1.14}
 
 \begin{document}
     \begin{tikzpicture}
-    	\node (facet_graph) {\includestandalone[mode=buildnew, height=2cm]{building_graph}};
-        \path (facet_graph) + (-.3, -.5) node (facet) {\tiny $f$};
+    	\node (facet_graph) {\includestandalone[mode=buildnew, height=4cm]{building_graph}};
+        \path (facet_graph) + (-.2, -1) node (f) {\small $f$};
+        \path (facet_graph) + (2, -.8) node (g) {\small $g$};
         
-        \path (facet) + (0, -1) node (attributes) {};
+        \path (f) + (-2, -1) node (attributes) {\tiny
+        $\begin{bmatrix}
+        	Degree(f)\\
+            Area(f)\\
+            Circumference(f)\\
+            d(\mathscr{C}(f), \mathscr{C}(g)) : (f, g) \in facets(m)^2 \cap E(m)\})\\
+            acos(\vec{n}(f) . \vec{n}(g)) : (f, g) \in facets(m)^2 \cap E(m)\})
+         \end{bmatrix}$
+        };
     \end{tikzpicture}
 \end{document}
