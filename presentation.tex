@@ -266,7 +266,7 @@
                     \includegraphics[height=.7\textheight]{images/altimetric_features}
                 \end{figure}
             \end{frame}
-            \begin{frame}{Radiometric features}
+            \begin{frame}{Optical features}
                 \begin{figure}
                     \begin{subfigure}{.48\textwidth}
                         \includegraphics[width=\textwidth]{images/radio_vector}
@@ -358,13 +358,36 @@
     \section{Conclusion}
         \subsection{Percpectives}
             \begin{frame}{More annotated data}
-                
+                We need more data:
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item to have enough representative samples for each error for the learning step;
+                    \item to avoid overfitting to a specific urban scene or a specific reconstruction method.
+                \end{itemize}
             \end{frame}
             \begin{frame}{More sophisticated features}
-                
+                We consider investigating:
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item<1-> Graph kernels:
+                    \begin{itemize}
+                        \item[\color{green} +]<2-> it can be feasible: we mostly have small graphs.
+                        \item[\color{green} +]<3-> it takes advantage of the model structure better than simple histograms;
+                        \item[\color{red} --]<4-> it requires high computational capacity.
+                    \end{itemize}
+                    \item<5-> Deep learning:
+                    \begin{itemize}
+                        \item[\color{green} +]<6-> its capacity has been proven for images;
+                        \item[\color{green} +]<7-> it is highly semantic and transferable;
+                        \item[\color{red} --]<8-> it requires a big number of instances.
+                    \end{itemize}
+                \end{itemize}
             \end{frame}
         \subsection{Take home message}
             \begin{frame}{Take home message}
-                
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item<1-> We propose a new qualification framework for building 3D polyhedral models;
+                    \item<2-> We categorize 3D model errors into a flexible, robust and hierarchical taxonomy independent from the modeling method and the urban scene;
+                    \item<3-> We propose a fast, lightweight and modular classification pipeline using supervised learning for model evaluation;
+                    \item<4-> We established a baseline for geometric, optical and altimetric features.
+                \end{itemize}
             \end{frame}
 \end{document}
