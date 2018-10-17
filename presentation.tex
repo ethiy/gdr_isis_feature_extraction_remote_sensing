@@ -76,7 +76,7 @@
 
     \section{Introduction}
         \begin{frame}{Context: 3D model vs. 3D mesh}
-            \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+            \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}, itemsep=2em]
                 \item<1-> 3D urban model $\longleftrightarrow$ polyhedral surface representing a building.
                 \item<2-> a 3D model facet $\longleftrightarrow$ an architectural feature.
             \end{itemize}
@@ -88,7 +88,7 @@
         \end{frame}
         \begin{frame}{Motivation}
             \only<1-4>{
-                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}, itemsep=2em]
                     \item<1-> Automatic urban modeling: an active research area~\citep{Musialski2012};
                     \item<2-> Results seamless but lack generality~\citep{rottensteiner2014results};
                     \begin{itemize}[label=$\longrightarrow$]
@@ -101,7 +101,7 @@
                 \begin{itemize}[label=Goal $\longrightarrow$, font=\color{purple}, leftmargin=2cm]
                     \item<5-> Detect and describe semantic errors that affects building 3D models.
                 \end{itemize}
-                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}, itemsep=2em]
                     \item<6-> Semantic errors independent from \textbf{reconstruction methods} and \textbf{urban scenes}.
                     \item<7-> Transferablility, and hence scallability, of the evalution method.
                 \end{itemize}
@@ -118,19 +118,20 @@
 
     \section{Methodology}
         \begin{frame}{Main ideas behind our approach}
-            \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+            \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}, itemsep=2em]
                 \item<1-> Compile errors that affect building models in a taxonomy;
                 \item<2-> Evaluation at building level $\Longrightarrow$ formulated as a supervized classification problem;
                 \item<3-> Study in a \textbf{2.5D overhead} modeling setting.
             \end{itemize}
         \end{frame}
-        \begin{frame}{Bidimensional taxonomy}
+        \begin{frame}{Taxonomy structure}
             Two criteria determine the taxonomy structure:
-            \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
-                \item<1-> the \acrshort{acr::lod};
-                \item<2-> the \emph{finesse}: the semantic evaluation level.
+            \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}, itemsep=2em]
+                \item<2-> the \acrshort{acr::lod};
+                \item<3-> the \emph{finesse}: the semantic evaluation level.
             \end{itemize}
-            \uncover<3->{
+            ~\\
+            \uncover<4->{
                 \begin{block}{Definition}
                     An error is of maximal \emph{finesse} $\Leftrightarrow$ it corresponds, semantically, to a unitary action required to correct the model. The error is called \emph{atomic}.
                 \end{block}
@@ -252,7 +253,17 @@
 
     \section{Experiments}
         \begin{frame}{Used data}
-
+            \begin{table}
+                \begin{center}
+                    \begin{tabular}{c c c c}
+                        \toprule
+                         & Elancourt & Nantes & Paris 13 \\
+                        \midrule
+                        \# samples & 2009 & 748 & 478 \\
+                        \bottomrule
+                    \end{tabular}
+                \end{center}
+            \end{table}
         \end{frame}
         \begin{frame}{Results}
                 
@@ -282,7 +293,7 @@
     
     \section{Conclusion}
         \begin{frame}{Conclusion \& Perspectives}
-            \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+            \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}, itemsep=2em]
                 \item \textbf{Flexible, robust and hierarchical} taxonomy agnostic to inputs;
                 \item \textbf{Fast, lightweight and modular} pipeline for model evaluation;
                 \item Baseline for geometric, image-based and height-based features;
