@@ -56,7 +56,7 @@
 
 
 \newacronym{acr::lod}{LoD}{Level of Detail}
-\newacronym{acr::elod}{eLoD}{evalution Level of Detail}
+\newacronym{acr::elod}{eLoD}{evaluation Level of Detail}
 \newacronym{acr::lidar}{LiDAR}{Light Detection and Ranging}
 \newacronym{acr::dsm}{DSM}{Digital Surface Model}
 \newacronym{acr::gui}{GUI}{Graphical User Interface}
@@ -90,20 +90,20 @@
             \only<1-4>{
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}, itemsep=2em]
                     \item<1-> Automatic urban modeling: an active research area~\citep{Musialski2012};
-                    \item<2-> Results seamless but lack generality~\citep{rottensteiner2014results};
+                    \item<2-> Results seamless but lack generality and often erroneous~\citep{rottensteiner2014results};
                     \begin{itemize}[label=$\longrightarrow$]
                         \item<3-> labourious manual corrections.
                     \end{itemize}
-                    \item<4-> Urban 3D model semantic diagnostic not well studied~\citep{nguatem2017modeling};
+                    \item<4-> Urban 3D model semantic diagnostic \textcolor{purple}{not well studied}~\citep{nguatem2017modeling};
                 \end{itemize}
             }
             \only<5->{
                 \begin{itemize}[label=Goal $\longrightarrow$, font=\color{purple}, leftmargin=2cm]
-                    \item<5-> Detect and describe semantic errors that affects building 3D models.
+                    \item<5-> Detect and describe semantic errors that affect building 3D models.
                 \end{itemize}
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}, itemsep=2em]
                     \item<6-> Semantic errors independent from \textbf{reconstruction methods} and \textbf{urban scenes}.
-                    \item<7-> Transferablility, and hence scallability, of the evalution method.
+                    \item<7-> \textbf{Transferability}, and hence scallability, of the evaluation method.
                 \end{itemize}
             }
         \end{frame}
@@ -120,15 +120,15 @@
         \begin{frame}{Main ideas behind our approach}
             \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}, itemsep=2em]
                 \item<1-> Compile errors that affect building models in a taxonomy;
-                \item<2-> Evaluation at building level $\Longrightarrow$ formulated as a supervized classification problem;
-                \item<3-> Study in a \textbf{2.5D overhead} modeling setting.
+                \item<2-> Evaluation at building level $\Longrightarrow$ formulated as a supervised classification problem;
+                \item<3-> Study in a \textbf{2.5D overhead (aerial)} modeling setting.
             \end{itemize}
         \end{frame}
         \begin{frame}{Taxonomy structure}
             Two criteria determine the taxonomy structure:
             \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}, itemsep=2em]
-                \item<2-> the \acrshort{acr::lod};
-                \item<3-> the \emph{finesse}: the semantic evaluation level.
+                \item<2-> the \textbf{\acrfull{acr::lod}};
+                \item<3-> the \textbf{\emph{finesse}}: the semantic evaluation level.
             \end{itemize}
             ~\\
             \uncover<4->{
@@ -223,7 +223,7 @@
             \end{figure}
         \end{frame}
 
-        \begin{frame}{The evalutation pipeline sketch}
+        \begin{frame}{The evaluation pipeline sketch}
             \begin{figure}
                 \includegraphics[width=\textwidth]{graphical_abstract}
             \end{figure}
@@ -252,26 +252,51 @@
         \end{frame}
 
     \section{Experiments}
-        \begin{frame}{Used data}
+        \begin{frame}{Results using all features}
             \begin{table}
                 \begin{center}
+                    \scriptsize
                     \begin{tabular}{c c c c}
                         \toprule
-                         & Elancourt & Nantes & Paris 13 \\
+                        & Elancourt & Nantes & Paris 13 \\
                         \midrule
                         \# samples & 2009 & 748 & 478 \\
                         \bottomrule
                     \end{tabular}
+                    \caption{\scriptsize Dataset statistics}
+                    \uncover<2->{
+                        \begin{tabular}{|x{1cm} | x{1.3cm} x{1.3cm} | x{1.2cm} x{1.2cm} | x{1.2cm} x{1.2cm}|}
+                            \hline
+                            & \multicolumn{2}{x{3cm}|}{\textbf{Elancourt (10-cross val.)}} & \multicolumn{2}{x{2.4cm}|}{\textbf{Elancourt $\rightarrow$ Nantes}} & \multicolumn{2}{x{2.5cm}|}{\textbf{Elancourt $\rightarrow$ Paris 13}}\\
+                            \cline{2-7}
+                            &\textbf{Recall} & \textbf{Prec.} & \textbf{Recall} & \textbf{Prec.} & \textbf{Recall} & \textbf{Prec.} \\
+                            \hline
+                            \textit{BOS} & 90.83 & 76.14 & \textcolor{IGNDarkGreen}{93.12} & \textcolor{red}{42.61} & \textcolor{IGNDarkGreen}{96.53} & \textcolor{red}{43.82} \\
+                            \hline
+                            \textit{BUS} & 39.32 & 71.81 & \textcolor{red}{8.82} & 66.67 & \textcolor{red}{0} & \textcolor{red}{---} \\
+                            \hline
+                            \textit{BImB} & 16.75 & 68.0 & \textcolor{red}{2.02} & 33.33 & \textcolor{red}{0} & \textcolor{red}{---} \\
+                            \hline
+                            \textit{BInT} & 11.11 & 91.67 & 0.88 & 100 & 3.95 & 50.0 \\
+                            \hline
+                            \hline
+                            \textit{FOS} & 98.91 & 98.84 & \textcolor{IGNDarkGreen}{98.33} & \textcolor{IGNDarkGreen}{97.92} & \textcolor{IGNDarkGreen}{97.19} & \textcolor{IGNDarkGreen}{97.58} \\
+                            \hline
+                            \textit{FUS} & 1.27 & 66.67 & \textcolor{IGNDarkGreen}{13.81} & \textcolor{IGNDarkGreen}{63.04} & 8.36 & 95.83 \\
+                            \hline
+                            \textit{FImB} & 7.42 & 100 & \textcolor{IGNDarkGreen}{46.34} & 65.52 & 11.80 & 60.71 \\
+                            \hline
+                            \textit{FImT} & 3.33 & 100 & 9.09 & 100 & 0 & 0 \\
+                            \hline
+                            \textit{FIG} & 79.02 & 71.82 & \textcolor{IGNDarkGreen}{94.17} & 70.70 & \textcolor{IGNDarkGreen}{86.16} & \textcolor{IGNDarkGreen}{88.47} \\
+                            \hline
+                        \end{tabular}
+                        \caption{\scriptsize Test results using \textbf{Random Forest} ($max\ depth = 4$ \& $\# trees = 1000$) trained on Elancourt.}
+                    }
                 \end{center}
             \end{table}
         \end{frame}
-        \begin{frame}{Results}
-                
-        \end{frame}
-        \begin{frame}{Discussion}
-                
-        \end{frame}
-        \begin{frame}{Some failure cases}
+        \begin{frame}{Some failure cases on Elancourt}
             \begin{figure}
                 \begin{center}
                 \tiny
@@ -282,9 +307,9 @@
                         \textbf{Errors} & \textbf{G.T.} & \textbf{Pred.} & \textbf{Errors} & \textbf{G.T.} & \textbf{Pred.} & \textbf{Errors} & \textbf{G.T.} & \textbf{Pred.} & \textbf{Errors} & \textbf{G.T.} & \textbf{Pred.}\\
                         \hline
                         \textit{BOS} & \xmark & \cmark & \textit{BUS} & \xmark & \cmark & \textit{BOS} & \cmark & \cmark & \textit{BOS} & \cmark & \xmark \\
-                        Valid & \cmark & \xmark & \textit{FImS} & \cmark & \xmark & \textit{FUS} & \cmark & \xmark &  \textit{FOS} & \cmark & \xmark \\
+                        Valid & \cmark & \xmark & \textit{FIG} & \cmark & \xmark & \textit{FUS} & \cmark & \xmark &  \textit{FOS} & \cmark & \xmark \\
                             &  &  & \textit{FOS} & \cmark & \xmark &  &  &  & \textit{BUS} & \cmark & \xmark \\
-                            &  &  &  &  &  &  &  &  &  \textit{BInF} & \cmark & \cmark \\
+                            &  &  &  &  &  &  &  &  &  \textit{BImB} & \cmark & \cmark \\
                         \hline
                     \end{tabular}
                 \end{center}
@@ -292,13 +317,19 @@
         \end{frame}
     
     \section{Conclusion}
-        \begin{frame}{Conclusion \& Perspectives}
-            \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}, itemsep=2em]
-                \item \textbf{Flexible, robust and hierarchical} taxonomy agnostic to inputs;
+        \begin{frame}{\textcolor{yellow}{Conclusion} \& \textcolor{purple}{Perspectives}}
+            \begin{itemize}[label=$\blacktriangleright$, font=\color{yellow}, itemsep=2em]
+                \item \textbf{Flexible, robust and hierarchical} taxonomy;
                 \item \textbf{Fast, lightweight and modular} pipeline for model evaluation;
                 \item Baseline for geometric, image-based and height-based features;
-                \item More annotated data $\longrightarrow$ \textbf{Simulate errors} from the taxonomy based on reference data;
-                \item Need for features leveraging data structure $\longrightarrow$ Graph kernels, deep learning.
             \end{itemize}
+            \uncover<2->{
+                ~\\
+                Future work:
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{purple}, itemsep=2em]
+                    \item Dataset augmentation $\longrightarrow$ \textbf{Simulate errors} from the taxonomy based on reference data;
+                    \item Extend to richer features $\longrightarrow$ Graph kernels, deep learning.
+                \end{itemize}
+            }
         \end{frame}
 \end{document}
