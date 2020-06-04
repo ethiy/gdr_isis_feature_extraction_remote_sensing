@@ -1,2 +1,2 @@
-# gdr_isis_rs_2018
-Abstract for the GDR ISIS on remote sensing (october 2018).
+# Semantic 3D building model evaluation
+Talk at GdR ISIS on "Extraction d'attributs et apprentissage pour l'analyse des images de télédétection" (Feature extraction and learning for remote sensing image analysis).
